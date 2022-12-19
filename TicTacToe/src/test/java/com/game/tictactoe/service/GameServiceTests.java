@@ -9,25 +9,34 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.service.GameService;
+import com.tictactoe.game.service.impl.GameBoard;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 
 @RunWith(MockitoJUnitRunner.class)
 public class GameServiceTests {
 
 	private GameService gameService;
+	private GameBoard gameBoard;
 
 	@Before
 	public void setUp() {
-		gameService = new GameService();
+		gameBoard = new GameBoard();
+		gameService = new GameService(gameBoard);
 	}
 
 	@Test
 	public void playerXShouldAlwaysGoFirst() {
-		assertThat(gameService.playGame(Player.X)).isEqualTo("Player X moved first");
+		assertThat(gameService.playGame(Player.X, 0, 0)).isEqualTo("Player X moved first");
 	}
 
 	@Test(expected = InvalidTurnException.class)
 	public void shouldThrowInvalidTurnExceptionIfOMovesFirst() {
-		gameService.playGame(Player.O);
+		gameService.playGame(Player.O, 0, 1);
+	}
+
+	@Test
+	public void getPositionFromPlayerAndSaveOnGameBoard() {
+		gameService.playGame(Player.X, 0, 2);
+		assertThat(gameBoard.getPlayerInPosition(0, 2)).isEqualTo(Player.X.getValue());
 	}
 }
