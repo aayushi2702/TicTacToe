@@ -18,4 +18,10 @@ public class GameBoardTests {
 		gameBoard.setPlayerInPosition(0, 1, Player.X);
 		assertThat(gameBoard.getPlayerInPosition(0, 1)).isEqualTo(Player.X.getValue());
 	}
+
+	@Test
+	public void getCountPositionsOccupiedOnGameBoard() {
+		GameBoard gameBoard = new GameBoard();
+		assertThat(gameBoard.getCountOfPositionsOccupied()).isZero();
+	}
 }
