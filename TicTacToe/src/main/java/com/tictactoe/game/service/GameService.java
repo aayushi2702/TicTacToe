@@ -30,10 +30,6 @@ public class GameService {
 		return player == Player.O;
 	}
 
-	private boolean isPlayerX(Player player) {
-		return player == Player.X;
-	}
-
 	private Player getNextPlayer(Player player) {
         return player == Player.X ? Player.O : Player.X;
     }
