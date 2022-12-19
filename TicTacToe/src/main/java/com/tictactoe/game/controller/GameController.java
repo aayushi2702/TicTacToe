@@ -12,6 +12,7 @@ import com.tictactoe.game.response.ErrorResponse;
 import com.tictactoe.game.response.GameResponse;
 import com.tictactoe.game.service.GameService;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
+import com.tictcatoe.game.exceptions.PositionOccupiedException;
 
 @RestController
 public class GameController {
@@ -30,6 +31,11 @@ public class GameController {
 
 	@ExceptionHandler(value = InvalidTurnException.class)
 	public ResponseEntity<ErrorResponse> handleInvalidTurnException(InvalidTurnException ex) {
+		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
+	}
+
+	@ExceptionHandler(value = PositionOccupiedException.class)
+	public ResponseEntity<ErrorResponse> handlePositionOccupiedException(PositionOccupiedException ex) {
 		return ResponseEntity.status(HttpStatus.FORBIDDEN).body(new ErrorResponse(ex.getMessage()));
 	}
 
