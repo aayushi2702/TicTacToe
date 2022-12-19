@@ -11,12 +11,20 @@ public class GameService {
 	public String playGame(Player player) {
 
 		String message = null;
-		if (player == Player.X) {
+		if (isPlayerX(player)) {
 			message = "Player X moved first";
-		} else if (player == Player.O) {
+		} else if (isPlayerO(player)) {
 			throw new InvalidTurnException("Player X should move first");
 		}
 		return message;
 	}
-	
+
+	private boolean isPlayerO(Player player) {
+		return player == Player.O;
+	}
+
+	private boolean isPlayerX(Player player) {
+		return player == Player.X;
+	}
+
 }
