@@ -35,4 +35,12 @@ public class GameBoard {
         return false;
     }
 	
+    public boolean isSecondRowOccupiedBySamePlayer() {
+        if (getPlayerInPosition(Position.FOUR) != EMPTY_POSITION_ON_BOARD) {
+            return (getPlayerInPosition(Position.FOUR) == getPlayerInPosition(Position.FIVE) &&
+                    getPlayerInPosition(Position.FIVE) == getPlayerInPosition(Position.SIX));
+        }
+        return false;
+    }
+	
 }
