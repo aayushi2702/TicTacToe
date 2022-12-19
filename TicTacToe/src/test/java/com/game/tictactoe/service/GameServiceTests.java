@@ -11,6 +11,7 @@ import com.tictactoe.game.enums.Player;
 import com.tictactoe.game.enums.Position;
 import com.tictactoe.game.service.GameService;
 import com.tictactoe.game.service.impl.GameBoard;
+import com.tictcatoe.game.exceptions.InvalidPositionException;
 import com.tictcatoe.game.exceptions.InvalidTurnException;
 import com.tictcatoe.game.exceptions.PositionOccupiedException;
 
@@ -53,4 +54,10 @@ public class GameServiceTests {
         gameService.playGame(Player.X, Position.TWO.getValue());
         gameService.playGame(Player.O, Position.TWO.getValue());
     }
+	
+	@Test(expected = InvalidPositionException.class)
+	public void shouldThrowInvalidPositionExceptionIfInputPositionIsNotInRangeOf1to9() {
+		gameService.playGame(Player.X, Position.DEFAULT.getValue());
+	}
+	
 }
