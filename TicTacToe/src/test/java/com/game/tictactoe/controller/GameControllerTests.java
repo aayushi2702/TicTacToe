@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.tictactoe.game.service.GameService;
+import com.tictcatoe.game.exceptions.InvalidTurnException;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest
@@ -29,6 +30,13 @@ class GameControllerTests {
 		when(gameService.playGame('X')).thenReturn("Player X moved first");
 
 		mockMvc.perform(post("/tic-tac-toe/play/{player}", 'X')).andExpect(status().isOk());
+	}
+
+	@Test
+	public void shouldShow403HttpStatusWhenInValidExceptionIsThrown() throws Exception {
+		when(gameService.playGame('O')).thenThrow(new InvalidTurnException("Player X should move first"));
+
+		mockMvc.perform(post("/tictactoe/play/{player}", 'O')).andExpect(status().isForbidden());
 	}
 
 }
