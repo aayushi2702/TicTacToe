@@ -86,4 +86,9 @@ public class GameService {
 		gameBoard.initializeGameBoard();
 	}
 
+	public String resetGame() {
+		resetGameState();
+		return "Reset Successful";
+	}
+
 }

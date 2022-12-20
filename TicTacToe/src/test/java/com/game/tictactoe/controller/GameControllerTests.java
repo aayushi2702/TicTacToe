@@ -2,6 +2,7 @@ package com.game.tictactoe.controller;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import org.junit.Test;
@@ -65,4 +66,10 @@ class GameControllerTests {
 		mockMvc.perform(post("/tic-tac-toe/play/{player}/{position}", Player.X, Position.DEFAULT.getValue()))
 				.andExpect(status().isForbidden());
 	}
+
+	@Test
+	public void resetGameHandlerAPIFound() throws Exception {
+		mockMvc.perform(put("/tictactoe/resetgame")).andExpect(status().isOk());
+	}
+
 }
