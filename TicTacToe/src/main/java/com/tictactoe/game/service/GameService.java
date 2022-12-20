@@ -51,7 +51,7 @@ public class GameService {
 		} else if (isFirstTurn() && isPlayerO(player)) {
 			throw new InvalidTurnException("Player X should move first");
 		} else if (isSamePlayerPlayingConsecutiveTurns(player)) {
-			throw new InvalidTurnException(String.format("Player %s's turn now", player));
+			throw new InvalidTurnException(String.format("Player %s's turn now", getNextPlayer(player)));
 		} else if (gameBoard.getPlayerInPosition(Position.getRowColumnValueOfPosition(position)) != ZERO) {
 			throw new PositionOccupiedException(String.format("Position %s is already occupied", position));
 		}
