@@ -80,4 +80,9 @@ public class GameBoard {
 		return isFirstRowOccupiedBySamePlayer() || isSecondRowOccupiedBySamePlayer()
 				|| isThirdRowOccupiedBySamePlayer();
 	}
+	
+	public boolean isAnyOfThreeColumnsOccupiedBySamePlayer() {
+		return isFirstColumnOccupiedBySamePlayer() || isSecondColumnOccupiedBySamePlayer()
+				|| isThirdColumnOccupiedBySamePlayer();
+	}
 }
