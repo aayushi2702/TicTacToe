@@ -27,6 +27,8 @@ public class GameService {
 		savePlayerOnBoard(player, position);
 		if (isWinnerAvailable()) {
 			return new GameResponse(String.format("Player %s won the game", player), "GAME OVER");
+		} else if (gameBoard.isBoardFull()) {
+			return new GameResponse("Game is a Tie", "GAME OVER");
 		}
 		return new GameResponse("GAME_IN_PROGRESS", getNextPlayer(player), player);
 	}
