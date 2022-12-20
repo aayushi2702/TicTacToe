@@ -75,4 +75,9 @@ public class GameBoard {
 		}
 		return false;
 	}
+
+	public boolean isAnyOneOfThreeRowsOccupiedBySamePlayer() {
+		return isFirstRowOccupiedBySamePlayer() || isSecondRowOccupiedBySamePlayer()
+				|| isThirdRowOccupiedBySamePlayer();
+	}
 }
